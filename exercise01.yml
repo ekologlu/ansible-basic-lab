@@ -1,0 +1,23 @@
+---
+- name: Install Apache webserver
+  hosts: copenhagen, stockholm
+  gather_facts: true
+  become: true
+
+  vars:
+    package_name: httpd
+
+  tasks:
+    - name: Set package_name for Ubuntu
+      ansible.builtin.set_fact:
+        package_name: apache2
+      when: ansible_facts['distribution'] == "Ubuntu"
+
+    - name: Install Apache
+      ansible.builtin.package:
+        name: "{{ package_name }}"
+        state: present
+
+    - name: Show Distribution
+      ansible.builtin.debug:
+        var: ansible_facts['distribution']
