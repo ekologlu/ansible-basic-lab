@@ -1,2 +1,4 @@
 .vault_pass
-.vault_pass
+.vault_pass_dev
+.vault_pass_prod
+.vault_pass_staging
